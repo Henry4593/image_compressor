@@ -1,0 +1,18 @@
+@import url(nav.css);
+@import url(footer.css);
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 5rem;
+    color: #36454F;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+

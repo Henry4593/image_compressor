@@ -1,0 +1,40 @@
+footer .footer-container{
+ margin-top: 3rem;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-evenly;
+ background-color: #f5f5f5;
+}
+.footer-container div {
+    margin: 1rem 2rem;
+    width: 30%;
+}
+.footer-container h2 {
+    font-size: large;
+    margin-bottom: 1rem;
+}
+.footer-contacts p svg {
+    margin-top: 0.3rem;
+}
+.footer-contacts p span {
+    text-align: center;
+    padding-top: 0;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+
+}
+.footer-contacts p {
+    position: relative;
+}
+.footer-container p a {
+    color: #454545;
+}
+.footer-container p a:hover {
+    color: #f64c0d;
+}
+
+footer > span p {
+    margin-left: 2rem;
+    padding: 0.4rem 0;
+}

@@ -1,0 +1,73 @@
+@import url(./base.css);
+.container-image-form {
+    display: flex;
+    min-height: 60vh;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+.upload-box {
+    position: absolute;
+    border: 2px solid rgb(98, 96, 96);
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    top: 15%;
+    bottom: 0%;
+    border-radius: 1rem;
+    border-style: dashed;
+}
+.upload-box-hidden{
+    display: none;
+}
+.upload-box p{
+    position: relative;
+    top: 20%;
+    width: 80%;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 1.5rem;
+}
+#image-list{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+
+}
+.image-container{
+    display: flex;
+    margin: 5px 20px;
+}
+#image-list img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.image-container p{
+    text-align: left;
+    padding-top: 25px;
+    padding-left: 5px;
+    width: 30%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    
+}
+#image {
+    display: none;
+}
+#submit-button {
+display: none;
+}
+.fa-cloud-arrow-up {
+    position: absolute;
+    left: 45%;
+    bottom: 30%;
+    cursor: pointer;
+}
+
+

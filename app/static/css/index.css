@@ -1,0 +1,173 @@
+@import url(base.css);
+.nav {
+    opacity: 0.8;
+}
+.cover-image {
+    position: relative;
+    background: url(../images/cover.webp) no-repeat center center;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+.image-overlay {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.cover-image h1 {
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+    position: absolute;
+    top: 10%;
+    left: 2%;
+}
+.cover-image h2 {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 2%;
+    margin-bottom: 2rem;
+}
+.cover-image h3 {
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    right: 2%;
+}
+#getstarted-button {
+    color: #fff;
+    background-color: #f64c0d;
+    padding: 5px 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 90%;
+    left: 5%;
+    font-size: 1.2rem;
+    z-index: 2;
+}
+#getstarted-button:hover {
+    color: #fff;
+    background-color: #0056b3;
+}
+.features{
+    display: flex;
+    justify-content: space-between;
+}
+.features img{
+    width: 100%;
+}
+.feature-text{
+    width: 100%;
+}
+.feature{
+    margin: 0 1rem;
+}
+#features h2{
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 600px;
+    margin: 5% 0;
+}
+#features h3{
+    font-size: 2rem;
+    font-weight: 600px;
+}
+#features p{
+    font-size: 1rem;
+}
+#about{
+    margin: 0 2rem;
+}
+#about h2{
+ text-align: center;
+ font-size: 3rem;
+ margin: 3% 0;
+}
+#about h3{
+    font-size: 2rem;
+    margin: 1rem 0;
+    text-align: center;
+
+}
+#about p{
+    font-size: 1rem;
+    text-align: center;
+}
+
+#video h2{
+    font-size: 3rem;
+    text-align: center;
+    margin: 5% 5%;
+}
+video{
+    position: relative;
+    left: 30%;
+}
+#video a{
+    background-color: #f64c0d;
+    border: none;
+    padding: 5px 20px;
+    color: white;
+    position: relative;
+    left: 5%;
+    
+}
+#video a:hover{
+    background-color: #0056b3;
+}
+#video p{
+    text-align: center;
+}
+.admins-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admins{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 400px;
+
+}
+.admins img{
+    border-radius: 50%;
+    width: 200px;
+    align-self: center;
+}
+.admins ul{
+    display: flex;
+}
+.admins li{
+    margin: 0 5px;
+}
+.admins .fa-brands{
+    margin: 5px 5px;
+}
+.fa-brands:hover{
+    color: #f64c0d;
+}
+.admins .fa-link{
+    margin: 5px 5px;
+}
+.admins a{
+    text-decoration: none;
+    color: #454545;
+}
+.admins a:hover{
+    color: #f64c0d;
+}

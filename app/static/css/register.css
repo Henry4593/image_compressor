@@ -1,0 +1,131 @@
+@import url(./base.css);
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  
+}
+.dialogue_box{
+  min-height: 46vh;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+.dialogue_box > h1{
+  font-size: 2rem;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+}
+.dialogue_box > p {
+  position: absolute;
+  font-size: 1.3rem;
+  top: 50%;
+  left: 30%;
+  margin-top: 20px;
+  display: inline;
+}
+.dialogue_box .countdown{
+  position: absolute;
+  font-size: 1.3rem;
+  top: 50%;
+  left: 41%;
+  margin-top: 20px;
+  display: inline;
+}
+#seconds{
+  position: absolute;
+  font-size: 1.3rem;
+  top: 50%;
+  left: 43%;
+  margin-top: 20px;
+  display: inline;
+}
+
+.container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.container span {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.container label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.container input {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.container input:focus {
+  border-color: #007bff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+small{
+  color: #f53505;
+}
+.success{
+  color: #1bc52f;
+}
+.fa-solid.fa-circle-exclamation{
+  display: none;
+  margin-left: 5px;
+}
+.fa-solid.fa-circle-check{
+  display: none;
+  margin-left: 5px;
+}
+.container button {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #f64c0d;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.container button:hover {
+  background-color: #0056b3;
+}
+
+.container p {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+

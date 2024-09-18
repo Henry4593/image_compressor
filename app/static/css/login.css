@@ -1,0 +1,102 @@
+@import url(base.css);
+.login-form {
+    /* Add your desired styles for the login-form class */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    border-radius: 1rem;
+  }
+.login-form h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+.login-form form {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    position: absolute;
+    top: 5%;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.3);
+    padding: 20px;
+    border-radius: 0.5rem;
+    width: 500px;
+}
+.login-form span:not(.password-reveal) {
+    margin: 1rem 0;
+}
+.login-form input {
+    padding: 1rem;
+    width: 100%;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    border: 0.09rem solid #36454F;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-right: 40px;
+}
+.login-form input:focus {
+    border-color: #007bff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+#wrap-password{
+    position: relative;
+}
+.password-reveal {
+    position: absolute;
+    right: 3%;
+    cursor: pointer;
+    top: 30%;
+}
+small{
+    color: #f53505;
+    text-align: left;
+}
+#success{
+    color: #1bc52f;
+    
+}
+.fail{
+    color: #f53505;
+}
+.fa-solid.fa-circle-exclamation{
+    display: none;
+}
+#fail_icon {
+    display: inline;
+    margin-left: 5px;
+}
+.fa-solid.fa-circle-check{
+    display: none;
+
+}
+#success_icon{
+    display: inline;
+    margin: 0 5px;
+}
+.password-reveal:hover {
+    color: #f64c0d;
+}
+.login-form button {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #f64c0d;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    color: white;
+    font-size: 1.2rem;
+    transition: background-color 0.15s ease-in-out
+}
+.login-form button:hover {
+    background-color: #0056b3;
+}
+.login-form a:hover {
+    text-decoration: underline;
+}
+  

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>compressio | Home</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/image.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css'> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+    <nav class="nav">
+        <a href="{{ url_for('main.index') }}" id="logo-container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/image.png') }}" alt="app-logo">
+            </div>
+        </a>
+        <div class="nav-container">
+            <ul>
+                <li><a href="#"> Pricing</a></li>
+                <li><a href="#features"> Features</a></li>
+                <li><a href="{{ url_for('main.login_page') }}">Get-started</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="landingpage-container">
+        <div>
+            <div class="cover-image">
+                <h1>Compressio</h1>
+                <h2>Effortless Image Compression for Everyone</h2>
+                <h3>Optimize your images without losing quality!</h3>
+                <a href="{{ url_for('main.login_page') }}" id="getstarted-button">Get-started -></a> <!-- change to register.html -->
+                <div class="image-overlay"></div>
+            </div>
+            <section id="features">
+                <h2>features</h2>
+                <div class="features">
+                    <div class="feature">
+                        <img id="image1" src="../static/images/cover.webp" alt="Fast Compression">
+                        <div class="feature-text">
+                            <h3>Fast Compression</h3>
+                            <p>Experience lightning-fast image compression that saves you time and bandwidth.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <img src="../static/images/cover.webp" alt="High-Quality Output">
+                        <h3>High-Quality Output</h3>
+                        <p>Our advanced algorithms ensure your images maintain their visual integrity.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="../static/images/cover.webp" alt="User-Friendly Interface">
+                        <h3>User-Friendly Interface</h3>
+                        <p>Easily drag and drop your images to get started. Designed for everyone!</p>
+                    </div>
+                </div>
+            </section>
+        
+            <section id="about">
+                <h2>Our Story</h2>
+                <p>Compressio was born out of frustration. As a web developer, I often struggled with large image files that slowed down my projects. After countless hours searching for reliable tools, I decided to create my own.</p>
+                <p>This project has improved my workflow and has become a valuable resource for others. This is a Portfolio Project for <a href="https://www.alxafrica.com/">Alx Africa</a>.</p>
+        
+                <h3>Meet the Team</h3>
+                <div class="admins-container">
+                    <div class="admins">
+                        <img src="../static/images/profile-photo.jpg" alt="admin-photo">
+                        <p>Joseph Otieno</p>
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/joseph-otieno-ke/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin fa-2x" style="color: #454545;"></i></a></li>
+                            <li><a href="https://github.com/Henry4593" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github fa-2x" style="color: #454545;"></i></a></li>
+                            <li><a href="https://x.com/henry_voyce" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-twitter fa-2x" style="color: #454545;"></i></i></a></li>
+                            
+                        </ul>
+                
+                        <a href="https://github.com/Henry4593/portfolio_project.git" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-link" style="color: #454545;"></i>Check Out my Code</a>
+                    </div>
+                </div>
+                
+            </section>
+        
+            <section id="video">
+                <h2>Watch Our Introduction Video</h2>
+                <video controls src="" width="600"></video>
+                <p>Meet the team, discover the story behind Compressio, explore our key features, and what's next for us!</p>
+            </section>
+        </div>
+        
+    <footer>
+        <div class="footer-container">
+            <div class="footer-quicklinks">
+                <h2>Quick Links</h2>
+                <p><a href="{{ url_for('main.index') }}">Home</a></p>
+                <p><a href="">About Compressio</a></p>
+                <p><a href="">Services</a></p>
+                <p><a href="">Resources</a></p>
+                <p><a href="">Contact Us</a></p>   
+            </div>
+            <div class="footer-help">
+                <h2>Help & Support</h2>
+                <p><a href="">Privacy Policy</a></p>
+                <p><a href="">Terms & Conditions</a></p>
+                <p><a href="">Cookie Notices</a></p>
+                <p><a href="">Support Center</a></p>
+            </div>
+            <div class="footer-contacts">
+                <h2>Contacts</h2>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="mr-2 text-black iconify iconify--ph" width="1em" height="1em" viewBox="0 0 256 256" style="font-size: 20px;"><path fill="currentColor" d="m222.37 158.46l-47.11-21.11l-.13-.06a16 16 0 0 0-15.17 1.4a8 8 0 0 0-.75.56L134.87 160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16 16 0 0 0 1.32-15.06v-.12L97.54 33.64a16 16 0 0 0-16.62-9.52A56.26 56.26 0 0 0 32 80c0 79.4 64.6 144 144 144a56.26 56.26 0 0 0 55.88-48.92a16 16 0 0 0-9.51-16.62M176 208A128.14 128.14 0 0 1 48 80a40.2 40.2 0 0 1 34.87-40a.6.6 0 0 0 0 .12l21 47l-20.67 24.74a6 6 0 0 0-.57.77a16 16 0 0 0-1 15.7c9.06 18.53 27.73 37.06 46.46 46.11a16 16 0 0 0 15.75-1.14a8 8 0 0 0 .74-.56L168.89 152l47 21.05h.11A40.21 40.21 0 0 1 176 208"></path></svg>
+                    <span>+254-712345678</span>
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="mr-2 text-black iconify iconify--mdi-light" width="1em" height="1em" viewBox="0 0 24 24" style="font-size: 20px;"><path fill="currentColor" d="M5 5h13a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3m0 1c-.5 0-.94.17-1.28.47l7.78 5.03l7.78-5.03C18.94 6.17 18.5 6 18 6zm6.5 6.71L3.13 7.28C3.05 7.5 3 7.75 3 8v9a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V8c0-.25-.05-.5-.13-.72z"></path></svg>
+                    <span>admin@compressio.tech</span>
+                </p>
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="mr-2 text-black iconify iconify--system-uicons" width="1em" height="1em" viewBox="0 0 21 21" style="font-size: 20px;"><g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" transform="translate(4 2)"><path d="m6.5 16.54l.631-.711c.716-.82 1.36-1.598 1.933-2.338l.473-.624c1.975-2.661 2.963-4.773 2.963-6.334C12.5 3.201 9.814.5 6.5.5s-6 2.701-6 6.033c0 1.561.988 3.673 2.963 6.334l.473.624a54.84 54.84 0 0 0 2.564 3.05"></path><circle cx="6.5" cy="6.5" r="2.5"></circle></g></svg>
+                    <span>1102 Applewood Adams, Ngong Road</span>
+                </p>
+            </div>
+        </div>
+        <span>
+            <p>copyright &copy; 2024 Compressio Africa</p>
+        </span>
+    </footer>
+</body>
+</html>
