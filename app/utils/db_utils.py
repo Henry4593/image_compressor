@@ -7,7 +7,6 @@ from app.models.base_model import Base
 from app.models.compression_histories import CompressionHistory
 from app.models.users import Users
 from app.models.images import Images
-from app.models.compression_histories import CompressionHistory
 import re
 import bcrypt
 from sqlalchemy.exc import IntegrityError
@@ -24,7 +23,10 @@ class DatabaseUtil:
         self.session = None
     
     def create_database(self):
-        load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../../.env'))
+        try:
+            load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '../../.env'))
+        except:
+            pass
         db = mysql.connector.connect(
         host=os.getenv('COMPRESSIO_HOST'),
         user=os.getenv('COMPRESSIO_USER'),
@@ -66,6 +68,7 @@ class DatabaseUtil:
             self.session.commit()
             return user
         except IntegrityError as e:
+            self.session.rollback()
             app.logger.error(f"Failed to create user: {e}")
             return None
         finally:
@@ -140,15 +143,36 @@ class DatabaseUtil:
         """
         Creates a new compression history record in the database.
         """
-        # ... Implement logic to create compression history records
-        pass
+        compression_history = CompressionHistory(
+            image_id=compression_history_data.get("image_id"),
+            compression_start_time=compression_history_data.get("compression_start_time"),
+            compression_end_time=compression_history_data.get("compression_end_time"),
+            duration=compression_history_data.get("duration"),
+            result=compression_history_data.get("compression_status"),
+            user_id=compression_history_data.get("user_id")
+        )
+        try:
+            self.session.add(compression_history)
+            self.session.commit()
+        except:
+            self.session.rollback()
 
-    def get_compression_histories(self, user_id):
+    def get_compression_histories(self, user_id=None):
         """
         Retrieves compression history records for a specific user.
         """
-        # ... Implement logic to retrieve compression history records
-        pass
+        try:
+            compression_history = self.session.query(CompressionHistory).filter_by(user_id=user_id)
+            compression_history_dict = compression_history.__dict__
+            new_dict = {}
+            for key, value in compression_history_dict.items():
+                if key != '_sa_instance_state':
+                    new_dict[key] = value
+            return new_dict
+        except:
+            app.logger.error("failed to retrieve compression history for the user")
+            return None
+
 
     def create_image(self, image_data):
         """
@@ -166,13 +190,47 @@ class DatabaseUtil:
                 compression_status=image_data.get("compression_status"),
                 image_format=image_data.get("file_extension")
             )
-        self.session.add(image)
-        self.session.commit()
+        try:
+            self.session.add(image)
+            self.session.commit()
+            return image.image_id  # Return the ID of the newly created image
+        except Exception as e:
+            self.session.rollback()  # Rollback in case of error
+            app.logger.error(f"Failed to create image record: {e}")
+            return None  # Or raise an exception based on your error handling strategy
         
 
-    def get_images(self, user_id):
+    def get_images(self, user_id=None):
         """
         Retrieves image records for a specific user.
         """
-        # ... Implement logic to retrieve image records
-        pass
+        try:
+            images = self.session.query(Images).filter_by(user_id=user_id).all()
+            images_list = []
+
+            for image in images:
+                image_dict = {}
+                for key, value in image.__dict__.items():
+                    if key != '_sa_instance_state':
+                        image_dict[key] = value
+                images_list.append(image_dict)
+            
+            return images_list
+        except Exception as e:  # Catch specific exceptions
+            app.logger.error(f"Error retrieving user images: {e}")
+            return None
+        finally:
+            self.close()
+
+    def get_image(self, image_id):
+        try:
+            if image_id:
+                image = self.session.query(Images).filter_by(image_id=image_id).first()
+
+                compressed_image_path = image.compressed_path
+                return compressed_image_path
+        except Exception as e:
+            app.logger.error("Error: cant fetch image")
+            return None
+        finally:
+            self.close()

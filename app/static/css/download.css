@@ -1,5 +1,45 @@
 @import url(base.css);
 
-.container{
+.download-container{
     min-height: 60vh;
+}
+.table-wrap {
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+margin-top: 20px;
+
+}
+.table-wrap table{
+    font-size: 0.9em;
+    width: 80%;
+}
+table td{
+    padding: 5px 10px;
+}
+button{
+    width: 45%;
+}
+
+.download-btn{
+    margin-left: 1.5rem;
+    background-color: #f64c0d;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+}
+.preview-btn{
+    background-color: #f64c0d;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+}
+.download-btn:hover, .preview-btn:hover{
+    background-color: #0056b3;
 }

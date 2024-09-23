@@ -10,105 +10,117 @@ const uploadStatus = document.createElement("p");
 
 var BASE_URL = "http://localhost:7000";
 
-// Handle file input change
-fileInput.addEventListener("change", async (event) => {
-  event.preventDefault();
-  const files = event.target.files;
+document.addEventListener('DOMContentLoaded', (event) => {
 
-  if (files.length === 0) {
-    updateUploadStatus("Please select at least one image to upload");
-    return;
-  }
-
-  try {
-    const formData = new FormData();
-    for (const file of files) {
-      formData.append('image', file);
+  fileInput.addEventListener("change", async (event) => {
+    event.preventDefault();
+    const files = event.target.files;
+  
+    // Check if any files were selected
+    if (files.length === 0) {
+      updateUploadStatus("Please select at least one image to upload");
+      return;
     }
-
-    updateUploadStatus('Uploading images...');
-    const response = await fetch(BASE_URL + "/api/compress", {
-      method: 'POST',
-      body: formData
-    });
-
-    if (response.ok) {
-      const data = await response.json()
-      alert(data["message"]);
-      updateUploadStatus(data["message"]);
-    } else {
-      updateUploadStatus('failed to upload file');
+  
+    try {
+      const formData = new FormData();
+      for (const file of files) {
+        formData.append('image', file); // Append each file to FormData
+      }
+  
+      updateUploadStatus('Uploading images...');
+      const response = await fetch(BASE_URL + "/api/images", {
+        method: 'POST',
+        body: formData
+      });
+  
+      if (response.ok) {
+        // Update status based on the number of files
+        updateUploadStatus(files.length < 2 ? "Compressing image..." : "Compressing images...");
+        const data = await response.json();
+        updateUploadStatus(data["message"]); // Ensure data.message exists
+      } else {
+        updateUploadStatus('Failed to upload file'); // Handle failed response
+      }
+    } catch (error) {
+      updateUploadStatus('Internal server error 500'); // Provide a user-friendly message
     }
-  } catch (error) {
-    console.error('Error uploading images:', error);
-    body.innerHTML = "";
-    updateUploadStatus('Internal server error 500');
-  }
-});
-
-// Handle drag over event
-dropZone.addEventListener('dragover', (e) => {
-  e.preventDefault();
-  dropZone.style.borderColor = '#f00'; // Highlight drop zone
-});
-
-// Handle drop event
-dropZone.addEventListener('drop', async (e) => {
-  e.preventDefault();
-  dropZone.style.borderColor = '#454545'; // Reset border color
-  const files = e.dataTransfer.files;
-
-  if (files.length === 0) {
-    updateUploadStatus("Please select at least one image to upload");
-    return;
-  }
-
-  try {
-    handleFiles(files); // Use existing files variable
-
-    const formData = new FormData();
-    for (const file of files) {
-      formData.append('image', file);
+  });
+  
+  // Handle drag over event
+  dropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropZone.style.borderColor = '#f64c0d'; // Highlight drop zone
+  });
+  
+  // Handle drop event
+  dropZone.addEventListener('drop', async (e) => {
+    e.preventDefault();
+    dropZone.style.borderColor = '#454545'; // Reset border color
+    const files = e.dataTransfer.files;
+    const len_files = files.length
+  
+    if (files.length === 0) {
+      updateUploadStatus("Please select at least one image to upload");
+      return;
     }
-
-    updateUploadStatus('Uploading images...');
-    const response = await fetch(BASE_URL + "/api/compress", {
-      method: 'POST',
-      body: formData
-    });
-
-    if (response.ok) {
-      const data = await response.json()
-      updateUploadStatus(data["message"]);
-      // updateUploadStatus('Images uploaded successfully!');
-    } else {
+  
+    try {
+      handleFiles(files); // Use existing files variable
+  
+      const formData = new FormData();
+      for (const file of files) {
+        formData.append('image', file);
+      }
+      if (len_files < 2) {
+        updateUploadStatus('Uploading image...');
+      } else {
+        updateUploadStatus('Uploading images...');
+      }
+      
+      const response = await fetch(BASE_URL + "/api/compress", {
+        method: 'POST',
+        body: formData
+      });
+      if (len_files < 2) {
+        updateUploadStatus('Compressing image...');
+      } else {
+        updateUploadStatus('Compressing images...');
+      }
+      if (response.ok) {
+        const data = await response.json()
+        updateUploadStatus(data["message"]);
+      } else {
+        updateUploadStatus(data["message"]);
+      }
+    } catch (error) {
+      console.error('Error uploading images:', error);
+      body.innerHTML = "";
       updateUploadStatus('Error uploading images. Please try again later.');
     }
-  } catch (error) {
-    console.error('Error uploading images:', error);
-    body.innerHTML = "";
-    updateUploadStatus('Error uploading images. Please try again later.');
-  }
-});
-
-// Handle drag leave event
-dropZone.addEventListener('dragleave', (e) => {
-  e.preventDefault();
-  dropZone.style.borderColor = '#454545'; // Reset border color
-});
-
-// Prevent default behavior for body drag events
-outsideDropzone.addEventListener('dragover', (event) => {
-  event.preventDefault();
-});
-
-outsideDropzone.addEventListener('dragleave', (event) => {
-  event.preventDefault();
-});
-
-outsideDropzone.addEventListener('drop', (event) => {
+  });
+  
+  // Handle drag leave event
+  dropZone.addEventListener('dragleave', (e) => {
+    e.preventDefault();
+    dropZone.style.borderColor = '#454545'; // Reset border color
+  });
+  
+  // Prevent default behavior for body drag events
+  outsideDropzone.addEventListener('dragover', (event) => {
     event.preventDefault();
   });
+  
+  outsideDropzone.addEventListener('dragleave', (event) => {
+    event.preventDefault();
+  });
+  
+  outsideDropzone.addEventListener('drop', (event) => {
+      event.preventDefault();
+    });
+});
+// Handle file input change
+
   
   // Function to handle file uploads
   async function handleFiles(files) {
@@ -156,4 +168,5 @@ outsideDropzone.addEventListener('drop', (event) => {
   
   function updateUploadStatus(text) {
     body.textContent = text;
+    body.style.fontSize = "1.3rem";
   }

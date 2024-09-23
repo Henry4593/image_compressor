@@ -8,8 +8,6 @@ from flask import current_app as app
 
 
 class CompressImage:
-    # upload_path = os.path.join(app.root_path, "uploads")
-    # compressed_path = os.path.join(app.root_path, "static/compressed")
     time_format = '%Y%m%d_%H%M%S%f'
     SUPPORTED_EXTENSIONS = {
         'jpg', 'jpeg', 'png', 'gif', 'webp'
@@ -37,6 +35,10 @@ class CompressImage:
         self.image_file = file
         self.original_size = None
         self.compressed_size = None
+        self.image_id = None
+        self.compression_start_time = None
+        self.compression_end_time = None
+        self.duration = None
         self.file_extension = file_extension
         self.quality = quality if file_extension in self.__class__.IMAGE_EXTENSIONS else None
         self.compression_level = compression_level if file_extension in self.__class__.PNG_EXTENSIONS else None
@@ -132,11 +134,19 @@ class CompressImage:
         """
         try:
             image = Image.open(self.upload_path)
+            self.compression_start_time = datetime.utcnow()
             image.save(self.compressed_path, format='JPEG', quality=self.quality)
-            self.compressed_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = datetime.utcnow()
+            self.compression_end_time = self.compressed_at
+            self.duration = (self.compression_end_time - self.compression_start_time).total_seconds()
+            self.compression_start_time = self.compression_start_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = self.compressed_at.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_end_time = self.compression_end_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_status = "success"
             app.logger.info("JPEG image compression successful")
         except Exception as e:
-            app.logger.error(f"Error compressing JPEG image: {e}")
+            self.compression_status = "failed"
+            app.logger.error(f"Error compressing JPEG image: {e}")           
 
     def compress_png(self):
         """
@@ -148,10 +158,18 @@ class CompressImage:
         """
         try:
             image = Image.open(self.upload_path)
+            self.compression_start_time = datetime.utcnow()
             image.save(self.compressed_path, format='PNG', compress_level=self.compression_level, optimize=True)
-            self.compressed_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = datetime.utcnow()
+            self.compression_end_time = self.compressed_at
+            self.duration = (self.compression_end_time - self.compression_start_time).total_seconds()
+            self.compression_start_time = self.compression_start_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = self.compressed_at.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_end_time = self.compression_end_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_status = "success"
             app.logger.info("PNG image compression successful")
         except Exception as e:
+            self.compression_status = "failed"
             app.logger.error(f"Error compressing PNG image: {e}")
 
     def compress_gif(self):
@@ -165,10 +183,18 @@ class CompressImage:
         """
         try:
             image = Image.open(self.upload_path)
+            self.compression_start_time = datetime.utcnow()
             image.save(self.compressed_path, format='GIF', optimize=self.optimization_level, duration=self.duration)
-            self.compressed_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = datetime.utcnow()
+            self.compression_end_time = self.compressed_at
+            self.duration = (self.compression_end_time - self.compression_start_time).total_seconds()
+            self.compression_start_time = self.compression_start_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = self.compressed_at.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_end_time = self.compression_end_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_status = "success"
             app.logger.info("GIF image compression successful")
         except Exception as e:
+            self.compression_status = "failed"
             app.logger.error(f"Error compressing GIF image: {e}")
 
     def compress_webp(self):
@@ -181,10 +207,18 @@ class CompressImage:
         """
         try:
             image = Image.open(self.upload_path)
+            self.compression_start_time = datetime.utcnow()
             image.save(self.compressed_path, format='WEBP', quality=self.quality, lossless=True)
-            self.compressed_at = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = datetime.utcnow()
+            self.compression_end_time = self.compressed_at
+            self.duration = (self.compression_end_time - self.compression_start_time).total_seconds()
+            self.compression_start_time = self.compression_start_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compressed_at = self.compressed_at.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_end_time = self.compression_end_time.strftime('%Y-%m-%d %H:%M:%S.%f')
+            self.compression_status = "success"
             app.logger.info("WebP image compression successful")
         except Exception as e:
+            self.compression_status = "failed"
             app.logger.error(f"Error compressing WebP image: {e}")
 
     def compress(self):

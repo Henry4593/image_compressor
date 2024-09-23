@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, String, DateTime
 from sqlalchemy.orm import relationship
 from uuid import uuid4
 from sqlalchemy.sql import func
@@ -18,6 +18,7 @@ class Users(Base):
 
     # Relationship to Images
     images = relationship('Images', back_populates='user', cascade="all, delete-orphan", lazy=True)
+    compression_histories = relationship('CompressionHistory', back_populates='user', cascade="all, delete-orphan", lazy=True)
 
     def __repr__(self):
         return f"User(user_id='{self.user_id}', first_name='{self.first_name}', last_name='{self.last_name}', username='{self.username}', email='{self.email}')"

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# display all enviroment variables content
+echo " COMPRESSIO_HOST == "$COMPRESSIO_HOST
+echo " COMPRESSIO_USER == "$COMPRESSIO_USER
+echo " COMPRESSIO_PASSWORD == "$COMPRESSIO_PASSWORD
+echo " COMPRESSIO_DB == "$COMPRESSIO_DB
+echo " APP_SECRET_KEY== "$APP_SECRET_KEY
+echo " DATABASE_URL == "$DATABASE_URL

@@ -1,10 +1,10 @@
-from flask import Blueprint, redirect, url_for, request, jsonify, flash, abort
+from flask import Blueprint, redirect, url_for, request, jsonify, flash, abort, render_template
 from app.utils.db_utils import DatabaseUtil
 from flask import current_app as app
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/api/users/login', methods=['POST'])
+@auth.route('/api/users/login', methods=['GET', 'POST'])
 def login_post():
     if request.method == "POST":
         username = request.form["username"]
@@ -25,8 +25,8 @@ def login_post():
                 databaseobj.close()
                 return redirect(url_for('main.upload_page'))
         databaseobj.close()
-        return redirect(url_for('main.login'))
-    abort(405)
+        error = "Invalid email/username or password"
+        return render_template('login.html', error=error )
     # jsonify({"message": "invalid username/email or password!"}), 400
 
 

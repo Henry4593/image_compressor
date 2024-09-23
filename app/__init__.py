@@ -1,11 +1,13 @@
-
 from flask import Flask
 from app.utils.db_utils import DatabaseUtil
 from flask_cors import CORS
 from app.utils.logging_utils import init_logging
+import os
+
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = os.environ.get("APP_SECRET_KEY")
     CORS(app)
     # Configure logging
     from .routes.auth_routes import auth
@@ -22,6 +24,7 @@ def create_app():
     app.register_blueprint(auth)
     app.register_blueprint(main)
     app.register_blueprint(compress)
+
     app.config["CURRENT_USER"] = ""
     app.logger.info("Blueprints registered and app configured.")
 

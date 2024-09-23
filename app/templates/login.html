@@ -13,7 +13,7 @@
     <nav class="nav">
         <a href="{{ url_for('main.index') }}" id="logo-container">
             <div class="logo">
-                <img src="../static/images/image.png" alt="app-logo">
+                <img src="{{ url_for('static', filename='images/image.png') }}" alt="app-logo">
             </div>
         </a>
         <div class="nav-container">
@@ -82,6 +82,6 @@
             <p>copyright &copy; 2024 Compressio Africa</p>
         </span>
     </footer>
-    <script src="../static/js/login.js"></script>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
 </body>
 </html>

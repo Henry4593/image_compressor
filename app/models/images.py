@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, String, ForeignKey, DateTime, Float
 from sqlalchemy.orm import relationship
 from uuid import uuid4
 from sqlalchemy.sql import func
@@ -14,8 +14,8 @@ class Images(Base):
     compressed_path = Column(String(255), nullable=False)
     upload_date = Column(DateTime, nullable=False, default=func.now())
     compression_date = Column(DateTime, nullable=True, default=func.now())
-    original_size = Column(Integer, nullable=False)
-    compressed_size = Column(Integer, nullable=False)
+    original_size = Column(Float, nullable=False)
+    compressed_size = Column(Float, nullable=False)
     compression_status = Column(String(50), nullable=False, default="pending")
     image_format = Column(String(20), nullable=False)
 

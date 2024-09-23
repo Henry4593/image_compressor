@@ -13,23 +13,19 @@
     <nav class="nav">
         <a href="{{ url_for('main.index') }}" id="logo-container">
             <div class="logo">
-                <img src="../static/images/image.png" alt="app-logo">
+                <img src="{{ url_for('static', filename='images/image.png') }}" alt="app-logo">
             </div>
         </a>
         <div class="nav-container">
             <ul>
-                <li><a href="#">myfiles</a></li>
+                <li><a href="#" id="user-files">myfiles</a></li>
                 <li><a href="{{ url_for('main.upload_page') }}">upload</a></li>
                 <li><a href="{{ url_for('main.profile') }}">profile</a></li>
             </ul>
         </div>
     </nav>
-    <div class="container">
-        <P>image.png</P>
-        <P>image.png</P>
-        <P>image.png</P>
-        <P>image.png</P>
-        <P>image.png</P>
+    <div class="download-container">
+   
     </div>
     <footer>
         <div class="footer-container">
@@ -68,5 +64,6 @@
             <p>copyright &copy; 2024 Compressio Africa</p>
         </span>
     </footer>
+    <script src="{{ url_for('static', filename='js/download.js') }}"></script>
 </body>
 </html>
